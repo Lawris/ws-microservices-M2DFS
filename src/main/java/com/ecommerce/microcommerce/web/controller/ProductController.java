@@ -43,7 +43,6 @@ public class ProductController {
     @ApiOperation(value = "Renvoie un produit sélectionné par son ID")
     @GetMapping("getProduitId/{id}")
     public Product afficherUnProduit(@PathVariable(value = "id") int id) {
-
         return productDao.findById(id);
     }
 
@@ -53,7 +52,6 @@ public class ProductController {
     @ApiOperation(value = "Ajoute un produit en base décrit par les params POST")
     @PostMapping(value = "/Produits")
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
-
         Product productAdded =  productDao.save(product);
 
         if (productAdded == null)
