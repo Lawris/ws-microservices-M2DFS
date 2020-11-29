@@ -9,7 +9,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableEurekaClient
 public class MicrocommerceApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MicrocommerceApplication.class, args);
 	}

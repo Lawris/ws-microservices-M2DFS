@@ -9,7 +9,8 @@
     <modules>
         <module>Circuit Breaker</module>
         <module>Eureka</module>
-    </modules>
+		<module>Produit</module>
+	</modules>
     <packaging>pom</packaging>
 
 	<name>microcommerce</name>
