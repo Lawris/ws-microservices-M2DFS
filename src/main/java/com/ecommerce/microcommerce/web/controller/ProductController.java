@@ -87,6 +87,18 @@ public class ProductController {
         }
     }
 
+    @ApiOperation(value = "Retourne tous les produits de la base avec la marge")
+    @GetMapping("/AdminProduits")
+    public String showAdminProduits() {
+        Iterable<Product> produits = productDao.findAll();
+        StringBuilder res = new StringBuilder("} <br>");
+        for (Product produit: produits) {
+            res.append(produit.toString()).append(" : ").append(produit.calculerMargeProduit()).append(", <br>");
+        }
+        res.append("}");
+        return res.toString();
+    }
+
 
     //Pour les tests
     @GetMapping(value = "test/produits/{prix}")
