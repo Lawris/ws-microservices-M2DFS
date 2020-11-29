@@ -8,6 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>Circuit Breaker</module>
+        <module>Eureka</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -67,6 +68,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-netflix-eureka-client</artifactId>
+			<version>2.2.5.RELEASE</version>
 		</dependency>
 	</dependencies>
 

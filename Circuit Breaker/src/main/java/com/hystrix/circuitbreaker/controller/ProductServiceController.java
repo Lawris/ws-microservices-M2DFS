@@ -11,7 +11,7 @@ public class ProductServiceController {
 
     @Autowired
     ProductServiceDelegate productServiceDelegate;
-    
+
     @GetMapping("/Produits")
     public MappingJacksonValue getAllProducts() {
         System.out.println("ici1");
