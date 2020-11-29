@@ -99,6 +99,12 @@ public class ProductController {
         return res.toString();
     }
 
+    @ApiOperation(value = "Retourne tous les produits triés par nom croissant")
+    @GetMapping("/ProduitsTri")
+    public List<Product> trierProduitsParOrdreAlphabetique() {
+        return productDao.findAllByOrderByNomAsc();
+    }
+
 
     //Pour les tests
     @GetMapping(value = "test/produits/{prix}")
