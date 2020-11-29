@@ -2,6 +2,7 @@ package com.ecommerce.microcommerce.web.controller;
 
 import com.ecommerce.microcommerce.dao.ProductDao;
 import com.ecommerce.microcommerce.model.Product;
+import com.ecommerce.microcommerce.web.exceptions.ProduitGratuitException;
 import com.ecommerce.microcommerce.web.exceptions.ProduitIntrouvableException;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
@@ -39,14 +40,17 @@ public class ProductController {
 
 
     //Récupérer un produit par son Id
-    public Product afficherUnProduit() {
-        return null;
+    @ApiOperation(value = "Renvoie un produit sélectionné par son ID")
+    @GetMapping("getProduitId/{id}")
+    public Product afficherUnProduit(@PathVariable(value = "id") int id) {
+
+        return productDao.findById(id);
     }
 
 
 
-
     //ajouter un produit
+    @ApiOperation(value = "Ajoute un produit en base décrit par les params POST")
     @PostMapping(value = "/Produits")
     public ResponseEntity<Void> ajouterProduit(@Valid @RequestBody Product product) {
 
@@ -65,11 +69,22 @@ public class ProductController {
     }
 
     // supprimer un produit
-    public void supprimerProduit() {
+    @ApiOperation(value = "Supprime un produit dans la base correspondant à l'id fournit")
+    @RequestMapping(value = "/suprimerProduit/{id}", method = RequestMethod.GET)
+    public void supprimerProduit(@PathVariable(value = "id") int id) {
+        productDao.delete(id);
     }
 
+
     // Mettre à jour un produit
+    @ApiOperation(value = "Update d'un produit de la base")
+    @RequestMapping(value = "/updateProduit", method = RequestMethod.PUT)
     public void updateProduit(@RequestBody Product product) {
+        if (product.getPrix() == 0) {
+            throw new ProduitGratuitException("Le nouveau prix du produit est gratuit");
+        } else {
+            productDao.save(product);
+        }
     }
 
 
